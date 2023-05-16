@@ -1,20 +1,22 @@
 html {
-	-ms-overflow-style: none;
+  -ms-overflow-style: none;
+  height: 100%;
 }
 
 ::-webkit-scrollbar {
- display: none;
+  display: none;
 }
 body {
-	background-color : black;
+  background-color: black;
+  height: 100%;
 }
 
 .w375 {
-  width : 375px;
+  width: 375px;
 }
 .h736 {
-  height : 736px;
+  height: 736px;
 }
-.ma { 
-  margin : 0 auto;
+.ma {
+  margin: 0 auto;
 }

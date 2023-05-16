@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -18,17 +17,17 @@ export const Row = ({ title, id, isRoundRow, movies }: any) => {
           </ArrowLeft>
         </ArrowWrapper>
         <Movie id={id}>
-          {movies.map((movie: any) =>
+          {movies[0].map((movie: any) =>
             !isRoundRow ? (
               <RectangularMovie
                 key={movie.id}
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={movie.name}
               />
             ) : (
               <WrapRoundMovie key={movie.id}>
                 <RoundMovie
-                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                   alt={movie.name}
                 />
               </WrapRoundMovie>
@@ -56,22 +55,13 @@ const ArrowWrapper = styled.div`
   padding-bottom: 25px;
   display: flex;
   align-items: center;
-  :hover {
-    height: 161px;
-    width: 30px;
-    background: rgba(20, 20, 20, 0.5);
-    transition: 300ms all ease-in-out;
-  }
 `;
 const ArrowLeft = styled.p`
-  position: absolute;
   font-size: 30px;
   color: white;
   cursor: pointer;
 `;
 const ArrowRight = styled.p`
-  position: absolute;
-  right: 38%;
   font-size: 30px;
   color: white;
   cursor: pointer;

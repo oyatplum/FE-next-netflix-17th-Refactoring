@@ -5,8 +5,10 @@ import styled from 'styled-components';
 export const Banner = ({ fetchUrl }: any) => {
   return (
     <Header>
-      <BackImg src = {`https://image.tmdb.org/t/p/original/${fetchUrl.poster_path}`}/>
-		</Header>
+      <BackImg
+        src={`https://image.tmdb.org/t/p/original${fetchUrl[1].poster_path}`}
+      />
+    </Header>
   );
 };
 
@@ -23,7 +25,6 @@ const Header = styled.div`
 `;
 
 const BackImg = styled.img`
-	width: 375px;
-	height: 415px;
-	
-`
+  width: 375px;
+  height: 415px;
+`;

@@ -6,15 +6,14 @@ import { useEffect } from 'react';
 
 export const NetflixComponent = () => {
   const router = useRouter();
-	useEffect( () => {
-		const goPage = setTimeout(() => {
-			router.push('/pages');
-		}, 3800);
-	
-	},[])
+  useEffect(() => {
+    const goPage = setTimeout(() => {
+      router.push('/home');
+    }, 3800);
+  }, []);
   return (
     <Wrapper>
-      <Lottie animationData={animationData} loop={false}/>
+      <Lottie animationData={animationData} loop={false} />
     </Wrapper>
   );
 };

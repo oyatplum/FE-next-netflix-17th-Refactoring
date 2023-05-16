@@ -25,13 +25,13 @@ export const Header = () => {
         <LogoLink href={'/'}>
           <LogoWrapper src={`/netflix_trans.png`}></LogoWrapper>
         </LogoLink>
-        <LogoLink href={'/pages'}>
+        <LogoLink href={'/home'}>
           <HeaderMenu>TV Shows</HeaderMenu>
         </LogoLink>
-        <LogoLink href={'/pages'}>
+        <LogoLink href={'/home'}>
           <HeaderMenu>Movies</HeaderMenu>
         </LogoLink>
-        <LogoLink href={'/pages'}>
+        <LogoLink href={'/home'}>
           <HeaderMenu>My List</HeaderMenu>
         </LogoLink>
       </div>
@@ -50,8 +50,7 @@ const HeaderWrapper = styled.div`
     align-items: center;
     justify-content: space-around;
     position: fixed;
-    transition-timing-function: ease-in;
-    transition: all 0.5s;
+    transition: all 0.5s ease-in;
   }
   .nav_black {
     background-color: #111;

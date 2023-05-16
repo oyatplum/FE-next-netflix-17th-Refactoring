@@ -4,15 +4,33 @@ import { FiSearch } from 'react-icons/fi';
 import { MdOutlineVideoLibrary } from 'react-icons/md';
 import { HiDownload } from 'react-icons/hi';
 import { BsList } from 'react-icons/bs';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export const Footer = () => {
+  const router = useRouter();
+
+  const [selected, setSelected] = useState(false);
+
   return (
     <FooterWrapper>
-      <FooterItem selected={true}>
+      <FooterItem
+        onClick={() => {
+          router.push('/home');
+          setSelected(true); //이거 onClick 아니면 false로 바꿔줘야 하맨
+        }}
+        selected
+      >
         <BiHomeAlt2 />
         <FooterItemText>Home</FooterItemText>
       </FooterItem>
-      <FooterItem selected={false}>
+      <FooterItem
+        onClick={() => {
+          router.push('/search');
+          setSelected(true);
+        }}
+        selected
+      >
         <FiSearch />
         <FooterItemText>Search</FooterItemText>
       </FooterItem>
