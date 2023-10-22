@@ -4,6 +4,7 @@ import NetflixComponent from '@/assets/components/Landing/NetflixComponent';
 import { useState } from 'react';
 import { IntroText } from '@/assets/components/Landing/IntroText';
 export default function app() {
+  console.log('app');
   const [enter, setEnter] = useState(false);
   const handleEnterNetflix = () => {
     setEnter(true);
@@ -15,11 +16,10 @@ export default function app() {
           <NetflixComponent />
         </WrapLanding>
       ) : (
-        <WrapEntire onClick = {handleEnterNetflix}>
+        <WrapEntire onClick={handleEnterNetflix}>
           <IntroText />
         </WrapEntire>
       )}
-      
     </Wrapper>
   );
 }
@@ -37,12 +37,11 @@ const WrapLanding = styled.div`
 `;
 
 const WrapEntire = styled.div`
-  width : 100%;
-  height : 100%;
-  background : black;
-  display : flex;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
   align-items: center;
-  justify-content : center;
-  cursor : pointer;
-  
-`
+  justify-content: center;
+  cursor: pointer;
+`;

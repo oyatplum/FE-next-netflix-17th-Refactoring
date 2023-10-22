@@ -5,6 +5,7 @@ import animationData from './NetflixLogo.json';
 import { useEffect } from 'react';
 
 export const NetflixComponent = () => {
+  console.log('netflixComponent');
   const router = useRouter();
   useEffect(() => {
     const goPage = setTimeout(() => {
@@ -15,7 +16,7 @@ export const NetflixComponent = () => {
     <Wrapper>
       <Lottie animationData={animationData} loop={false} />
       <HiddenAudio id="audio" autoPlay controls>
-        <source src="/netflix_intro.mp3" type="audio/mp3"/>
+        <source src="/netflix_intro.mp3" type="audio/mp3" />
       </HiddenAudio>
     </Wrapper>
   );

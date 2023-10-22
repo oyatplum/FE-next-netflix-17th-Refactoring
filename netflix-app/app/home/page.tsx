@@ -1,5 +1,5 @@
 'use client';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Banner } from '@/assets/components/Home/Banner';
 import { Button } from '@/assets/components/Home/Button';
 import { Row } from '@/assets/components/Home/Row';
@@ -10,6 +10,7 @@ import {
   fetchUpComing,
 } from '@/assets/api/requests';
 import Header from '@/assets/components/Common/Header';
+import theme from '../style/theme';
 
 async function getMovieData() {
   const getBannerData = await fetchNowPlaying();
@@ -32,24 +33,34 @@ async function getMovieData() {
 }
 
 export default async function main() {
+  console.log('home page');
   const movies = await getMovieData();
   return (
-    <Container>
-      <Header />
-      <Banner fetchUrl={movies.getBannerData} />
-      <Button fetchId={movies.getBannerData[1].id} />
-      <Rows>
-        <Row title="Previews" id="Ps" movies={movies.upComingData} isRoundRow />
-        <Row title="NowPlaying" id="NP" movies={movies.nowPlayingData} />
-        <Row title="Top Rated" id="TR" movies={movies.topRatedData} />
-        <Row title="Popular" id="Pr" movies={movies.popularData} />
-      </Rows>
-    </Container>
+    <>
+      <ThemeProvider theme={theme}>
+        <Container>
+          <Header />
+          <Banner fetchUrl={movies.getBannerData} />
+          <Button fetchId={movies.getBannerData[1].id} />
+          <Rows>
+            <Row
+              title="Previews"
+              id="Ps"
+              movies={movies.upComingData}
+              isRoundRow
+            />
+            <Row title="NowPlaying" id="NP" movies={movies.nowPlayingData} />
+            <Row title="Top Rated" id="TR" movies={movies.topRatedData} />
+            <Row title="Popular" id="Pr" movies={movies.popularData} />
+          </Rows>
+        </Container>
+      </ThemeProvider>
+    </>
   );
 }
 
 const Container = styled.div`
-  background-color: #000000;
+  background-color: ${({ theme }) => theme.color.black};
 `;
 
 const Rows = styled.div`
