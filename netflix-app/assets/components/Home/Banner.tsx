@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BannerInfo } from '@/assets/interface/interface';
 
-export const Banner = ({ fetchUrl }: any) => {
+export const Banner = ({ fetchUrl }: BannerInfo) => {
   return (
     <Header>
       <BackImg

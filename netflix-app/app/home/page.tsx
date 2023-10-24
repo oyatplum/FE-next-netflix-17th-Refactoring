@@ -35,6 +35,7 @@ async function getMovieData() {
 export default async function main() {
   console.log('home page');
   const movies = await getMovieData();
+  console.log('movies type', movies);
   return (
     <>
       <ThemeProvider theme={theme}>

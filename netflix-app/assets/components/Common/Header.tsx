@@ -51,8 +51,7 @@ const HeaderWrapper = styled.div`
   .nav {
     width: 375px;
     padding: 1rem 0 1rem 0;
-    ${(props) => props.theme.flex};
-    align-items: center;
+    ${(props) => props.theme.alignCenter};
     justify-content: space-around;
     position: fixed;
     transition: all 0.5s ease-in;

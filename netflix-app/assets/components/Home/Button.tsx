@@ -1,37 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import listButton from '../images/Button/list.svg';
 import playButton from '../images/Button/play.svg';
 import infoButton from '../images/Button/info.svg';
 import Link from 'next/link';
+import theme from '@/app/style/theme';
+import { ButtonInfo } from '@/assets/interface/interface';
 
-export const Button = ({ fetchId }: any) => {
+export const Button = ({ fetchId }: ButtonInfo) => {
   return (
-    <Container>
-      <MyListButton>
-        <ButtonImage src={listButton.src} />
-        <div className="text">{'My List'}</div>
-      </MyListButton>
-      <PlayButton>
-        <Link key={fetchId} href={`/video/${fetchId}`} className="link">
-          <ButtonImage src={playButton.src} />
-          <div className="text">{'Play'}</div>
-        </Link>
-      </PlayButton>
-      <InfoButton>
-        <Link key={fetchId} href={`/detail/${fetchId}`} className="link">
-          <ButtonImage src={infoButton.src} />
-          <div className="text">{'Info'}</div>
-        </Link>
-      </InfoButton>
-    </Container>
+    <>
+      <ThemeProvider theme={theme}>
+        <Container>
+          <MyListButton>
+            <ButtonImage src={listButton.src} />
+            <div className="text">{'My List'}</div>
+          </MyListButton>
+          <PlayButton>
+            <Link key={fetchId} href={`/video/${fetchId}`} className="link">
+              <ButtonImage src={playButton.src} />
+              <div className="text">{'Play'}</div>
+            </Link>
+          </PlayButton>
+          <InfoButton>
+            <Link key={fetchId} href={`/detail/${fetchId}`} className="link">
+              <ButtonImage src={infoButton.src} />
+              <div className="text">{'Info'}</div>
+            </Link>
+          </InfoButton>
+        </Container>
+      </ThemeProvider>
+    </>
   );
 };
 
 const ButtonImage = styled.img``;
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
+  ${(props) => props.theme.justifyCenter}
   height: 85px;
   margin-top: 15px;
   :hover {
@@ -40,8 +45,7 @@ const Container = styled.div`
   }
 `;
 const MyListButton = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${(props) => props.theme.flexColumn}
   align-items: center;
   cursor: pointer;
   .text {
@@ -50,7 +54,7 @@ const MyListButton = styled.div`
     font-size: 13.6416px;
     line-height: 20px;
     text-align: center;
-    color: #ffffff;
+    color: ${({ theme }) => theme.color.white};
   }
 `;
 const PlayButton = styled.div`
@@ -58,8 +62,7 @@ const PlayButton = styled.div`
   height: 45px;
   background: #c4c4c4;
   border-radius: 5.625px;
-  display: flex;
-  align-items: center;
+  ${(props) => props.theme.alignCenter}
   padding-left: 19px;
   margin: 0 45px 0 40px;
   cursor: pointer;
@@ -74,7 +77,7 @@ const PlayButton = styled.div`
     font-weight: 600;
     font-size: 20.4624px;
     line-height: 30px;
-    color: #000000;
+    color: ${({ theme }) => theme.color.black};
   }
 `;
 const InfoButton = styled.div`
@@ -84,7 +87,7 @@ const InfoButton = styled.div`
     height: 20px;
     font-size: 13.6416px;
     line-height: 20px;
-    color: #ffffff;
+    color: ${({ theme }) => theme.color.white};
   }
   .link {
     text-decoration: none;

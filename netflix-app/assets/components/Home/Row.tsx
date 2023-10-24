@@ -1,59 +1,63 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
+import theme from '@/app/style/theme';
+import { RowInfo, MovieTypeArray } from '@/assets/interface/interface';
 
-export const Row = ({ title, id, isRoundRow, movies }: any) => {
+export const Row = ({ title, id, isRoundRow, movies }: RowInfo) => {
   return (
     <Movies>
-      <Title>{title}</Title>
-      <Slider>
-        <ArrowWrapper>
-          <ArrowLeft
-            onClick={() => {
-              document.getElementById(id)!.scrollLeft -= 315;
-            }}
-          >
-            {'<'}
-          </ArrowLeft>
-        </ArrowWrapper>
-        <Movie id={id}>
-          {movies[0].map((movie: any) =>
-            !isRoundRow ? (
-              <Link key={movie.id} href={`/detail/${movie.id}`}>
-                <Image
-                  width={103}
-                  height={161}
-                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                  alt={movie.title}
-                  className="rect"
-                ></Image>
-              </Link>
-            ) : (
-              <Link key={movie.id} href={`/detail/${movie.id}`}>
-                <WrapRoundMovie key={movie.id}>
+      <ThemeProvider theme={theme}>
+        <Title>{title}</Title>
+        <Slider>
+          <ArrowWrapper>
+            <ArrowLeft
+              onClick={() => {
+                document.getElementById(id)!.scrollLeft -= 315;
+              }}
+            >
+              {'<'}
+            </ArrowLeft>
+          </ArrowWrapper>
+          <Movie id={id}>
+            {movies.map((movie: MovieTypeArray) =>
+              !isRoundRow ? (
+                <Link key={movie.obj.id} href={`/detail/${movie.obj?.id}`}>
                   <Image
-                    width={100}
-                    height={100}
-                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                    alt={movie.title}
-                    className="round"
-                  />
-                </WrapRoundMovie>
-              </Link>
-            )
-          )}
-        </Movie>
-        <ArrowWrapper>
-          <ArrowRight
-            onClick={() => {
-              document.getElementById(id)!.scrollLeft += 315;
-            }}
-          >
-            {'>'}
-          </ArrowRight>
-        </ArrowWrapper>
-      </Slider>
+                    width={103}
+                    height={161}
+                    src={`https://image.tmdb.org/t/p/original${movie.obj?.poster_path}`}
+                    alt={movie.obj.title}
+                    className="rect"
+                  ></Image>
+                </Link>
+              ) : (
+                <Link key={movie.obj.id} href={`/detail/${movie.obj?.id}`}>
+                  <WrapRoundMovie key={movie.obj.id}>
+                    <Image
+                      width={100}
+                      height={100}
+                      src={`https://image.tmdb.org/t/p/original${movie.obj?.poster_path}`}
+                      alt={movie.obj.title}
+                      className="round"
+                    />
+                  </WrapRoundMovie>
+                </Link>
+              )
+            )}
+          </Movie>
+          <ArrowWrapper>
+            <ArrowRight
+              onClick={() => {
+                document.getElementById(id)!.scrollLeft += 315;
+              }}
+            >
+              {'>'}
+            </ArrowRight>
+          </ArrowWrapper>
+        </Slider>
+      </ThemeProvider>
     </Movies>
   );
 };
@@ -62,15 +66,14 @@ const Slider = styled.div`
 `;
 const ArrowWrapper = styled.div`
   padding-bottom: 25px;
-  display: flex;
-  align-items: center;
+  ${(props) => props.theme.alignCenter}
   font-size: 30px;
   cursor: pointer;
   color: #c4c4c4;
   :hover {
     transform: scale(1.25);
     transition: transform 0.35s;
-    color: white;
+    color: ${({ theme }) => theme.color.white};
   }
 `;
 const Movie = styled.div`
@@ -108,7 +111,7 @@ const Title = styled.div`
   font-size: 26.7482px;
   line-height: 20px;
   letter-spacing: -0.0733945px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.color.white};
 `;
 const Movies = styled.div`
   padding-left: 18px;
