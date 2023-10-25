@@ -41,8 +41,8 @@ export default async function main() {
       <ThemeProvider theme={theme}>
         <Container>
           <Header />
-          <Banner fetchUrl={movies.getBannerData} />
-          <Button fetchId={movies.getBannerData[1].id} />
+          <Banner obj={movies.getBannerData[1]} />
+          <Button obj={movies.getBannerData[1]} />
           <Rows>
             <Row
               title="Previews"

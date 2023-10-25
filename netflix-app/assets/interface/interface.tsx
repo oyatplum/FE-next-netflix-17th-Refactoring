@@ -31,6 +31,6 @@ export interface MovieDetail {
 }
 
 export interface MovieTypeArray {
-  arr: MovieDetail[];
-  obj?: MovieDetail;
+  //arr?: MovieDetail[];
+  obj: MovieDetail;
 }

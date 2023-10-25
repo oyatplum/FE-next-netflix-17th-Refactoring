@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BannerInfo } from '@/assets/interface/interface';
+import { MovieTypeArray } from '@/assets/interface/interface';
 
-export const Banner = ({ fetchUrl }: BannerInfo) => {
+export const Banner = ({ obj }: MovieTypeArray) => {
   return (
     <Header>
       <BackImg
-        imageurl={`https://image.tmdb.org/t/p/original${fetchUrl[1].poster_path}`}
+        imageurl={`https://image.tmdb.org/t/p/original${obj.poster_path}`}
       />
     </Header>
   );

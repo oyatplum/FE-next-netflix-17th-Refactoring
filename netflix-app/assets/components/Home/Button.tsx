@@ -5,9 +5,9 @@ import playButton from '../images/Button/play.svg';
 import infoButton from '../images/Button/info.svg';
 import Link from 'next/link';
 import theme from '@/app/style/theme';
-import { ButtonInfo } from '@/assets/interface/interface';
+import { MovieTypeArray } from '@/assets/interface/interface';
 
-export const Button = ({ fetchId }: ButtonInfo) => {
+export const Button = ({ obj }: MovieTypeArray) => {
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -17,13 +17,13 @@ export const Button = ({ fetchId }: ButtonInfo) => {
             <div className="text">{'My List'}</div>
           </MyListButton>
           <PlayButton>
-            <Link key={fetchId} href={`/video/${fetchId}`} className="link">
+            <Link key={obj.id} href={`/video/${obj.id}`} className="link">
               <ButtonImage src={playButton.src} />
               <div className="text">{'Play'}</div>
             </Link>
           </PlayButton>
           <InfoButton>
-            <Link key={fetchId} href={`/detail/${fetchId}`} className="link">
+            <Link key={obj.id} href={`/detail/${obj.id}`} className="link">
               <ButtonImage src={infoButton.src} />
               <div className="text">{'Info'}</div>
             </Link>

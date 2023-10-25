@@ -6,6 +6,8 @@ import TvShowCard from '@/assets/components/Common/TvShowCard';
 
 async function getMovieData() {
   const tvShowsData = await fetchTvShows();
+  console.log('tvShowsData', tvShowsData);
+
   return {
     tvShowsData,
   };
@@ -16,7 +18,7 @@ export default async function HeaderMoviePage() {
   return (
     <Container>
       <Title>{'Tv Shows'}</Title>
-      <TvShowCard movieData = {tvShowsMovie.tvShowsData[0].results} />
+      <TvShowCard movieData={tvShowsMovie.tvShowsData[0].results} />
     </Container>
   );
 }
