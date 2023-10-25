@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import theme from '@/app/style/theme';
-import { RowInfo, MovieTypeArray } from '@/assets/interface/interface';
+import { RowInfo, MovieDetail } from '@/assets/interface/interface';
 
 export const Row = ({ title, id, isRoundRow, movies }: RowInfo) => {
   return (
@@ -21,25 +21,25 @@ export const Row = ({ title, id, isRoundRow, movies }: RowInfo) => {
             </ArrowLeft>
           </ArrowWrapper>
           <Movie id={id}>
-            {movies.map((movie: MovieTypeArray) =>
+            {movies.map((movie: MovieDetail) =>
               !isRoundRow ? (
-                <Link key={movie.obj.id} href={`/detail/${movie.obj?.id}`}>
+                <Link key={movie.id} href={`/detail/${movie.id}`}>
                   <Image
                     width={103}
                     height={161}
-                    src={`https://image.tmdb.org/t/p/original${movie.obj?.poster_path}`}
-                    alt={movie.obj.title}
+                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                    alt={movie.title}
                     className="rect"
                   ></Image>
                 </Link>
               ) : (
-                <Link key={movie.obj.id} href={`/detail/${movie.obj?.id}`}>
-                  <WrapRoundMovie key={movie.obj.id}>
+                <Link key={movie.id} href={`/detail/${movie.id}`}>
+                  <WrapRoundMovie key={movie.id}>
                     <Image
                       width={100}
                       height={100}
-                      src={`https://image.tmdb.org/t/p/original${movie.obj?.poster_path}`}
-                      alt={movie.obj.title}
+                      src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                      alt={movie.title}
                       className="round"
                     />
                   </WrapRoundMovie>

@@ -2,7 +2,7 @@ export interface RowInfo {
   title: string;
   id: string;
   isRoundRow?: boolean;
-  movies: MovieTypeArray[];
+  movies: MovieDetail[];
 }
 
 export interface ButtonInfo {
@@ -30,11 +30,7 @@ export interface MovieDetail {
   vote_count?: number;
 }
 
-export interface MovieDetailObj {
-  obj: MovieDetail;
-}
-
 export interface MovieTypeArray {
   arr: MovieDetail[];
-  obj: MovieDetail;
+  obj?: MovieDetail;
 }

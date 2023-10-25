@@ -47,12 +47,12 @@ export default async function main() {
             <Row
               title="Previews"
               id="Ps"
-              movies={movies.upComingData}
+              movies={movies.upComingData[0]}
               isRoundRow
             />
-            <Row title="NowPlaying" id="NP" movies={movies.nowPlayingData} />
-            <Row title="Top Rated" id="TR" movies={movies.topRatedData} />
-            <Row title="Popular" id="Pr" movies={movies.popularData} />
+            <Row title="NowPlaying" id="NP" movies={movies.nowPlayingData[0]} />
+            <Row title="Top Rated" id="TR" movies={movies.topRatedData[0]} />
+            <Row title="Popular" id="Pr" movies={movies.popularData[0]} />
           </Rows>
         </Container>
       </ThemeProvider>
