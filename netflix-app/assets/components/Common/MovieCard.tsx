@@ -3,13 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import { HeaderMovies, MovieDetail } from '@/assets/interface/interface';
 
-export default function MovieCard({movieData} : any) {
+export default function MovieCard({ movies }: HeaderMovies) {
   return (
     <>
       <Movies>
-        {movieData.map((movie: any) => (
-          <WrapMovie key= {movie.id}>
+        {movies.map((movie: MovieDetail) => (
+          <WrapMovie key={movie.id}>
             <Image
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
               width={146}
@@ -51,5 +52,5 @@ const Movies = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom : 60px;
+  padding-bottom: 60px;
 `;

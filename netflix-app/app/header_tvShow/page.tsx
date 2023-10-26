@@ -18,7 +18,7 @@ export default async function HeaderMoviePage() {
   return (
     <Container>
       <Title>{'Tv Shows'}</Title>
-      <TvShowCard movieData={tvShowsMovie.tvShowsData[0].results} />
+      <TvShowCard arr={tvShowsMovie.tvShowsData[0].results} />
     </Container>
   );
 }

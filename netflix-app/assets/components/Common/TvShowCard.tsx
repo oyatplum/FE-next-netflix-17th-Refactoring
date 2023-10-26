@@ -2,13 +2,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link';
+import { TvShowDetail, TvShowTypeArray } from '@/assets/interface/interface';
 
-export default function TvShowCard({ movieData }: any) {
+export default function TvShowCard({ arr }: TvShowTypeArray) {
   return (
     <>
       <Movies>
-        {movieData.map((movie: any) => (
+        {arr.map((movie: TvShowDetail) => (
           <WrapMovie key={movie.id}>
             <Image
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
