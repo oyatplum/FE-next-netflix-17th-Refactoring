@@ -3,7 +3,7 @@ import React from 'react';
 import { fetchUpComing } from '@/assets/api/requests';
 import styled from 'styled-components';
 import Link from 'next/link';
-import MovieCard from "@/assets/components/Common/MovieCard";
+import MovieCard from '@/assets/components/Common/MovieCard';
 
 async function getMovieData() {
   const upComingData = await fetchUpComing();
@@ -18,38 +18,11 @@ export default async function ComingPage() {
   return (
     <>
       <Title>{'Coming Soon'}</Title>
-      <MovieCard movieData = {comingMovie.upComingData[0]}/>
+      <MovieCard movies={comingMovie.upComingData[0]} />
     </>
   );
 }
-const WrapTitle = styled(Link)`
-  cursor: pointer;
-  text-decoration-line: none;
-  margin-left: 10px;
-`;
-const WrapMovie = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-  width: 375px;
-  height: 76px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: #424242;
-`;
-const MovieTitle = styled.p`
-  color: white;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 180px;
-`;
-const Movies = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom : 60px;
-`;
+
 const Title = styled.div`
   width: 300px;
   height: 45px;

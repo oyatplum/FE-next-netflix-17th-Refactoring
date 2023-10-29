@@ -1,23 +1,30 @@
-import Link from "next/link";
-import styled from "styled-components";
+import Link from 'next/link';
+import styled from 'styled-components';
 import playButton from '@/assets/components/images/Button/play.svg';
+import { TvShowTypeArray } from '@/assets/interface/interface';
 
-export const PlayButton = ({getMovieDetail} : any) => {
+export const PlayButton = ({ obj }: TvShowTypeArray) => {
   return (
     <>
-    {getMovieDetail.id !== undefined ? (
-      <Button>
-        <PlayButtonWrapper>
-          <Link key={getMovieDetail.id} href={`/video/${getMovieDetail.id}`} className="link">
-            <ButtonImage src={playButton.src} />
-            <div className="text">{'Play'}</div>
-          </Link>
-        </PlayButtonWrapper>
-      </Button>
-    ) : ( <></>)}
+      {obj ? (
+        obj.id !== undefined ? (
+          <Button>
+            <PlayButtonWrapper>
+              <Link key={obj.id} href={`/video/${obj.id}`} className="link">
+                <ButtonImage src={playButton.src} />
+                <div className="text">{'Play'}</div>
+              </Link>
+            </PlayButtonWrapper>
+          </Button>
+        ) : (
+          <></>
+        )
+      ) : (
+        <p>No Button</p>
+      )}
     </>
-  )
-}
+  );
+};
 
 const Button = styled.div`
   :hover {

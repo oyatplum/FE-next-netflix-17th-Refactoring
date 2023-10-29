@@ -8,17 +8,21 @@ export default function TvShowCard({ arr }: TvShowTypeArray) {
   return (
     <>
       <Movies>
-        {arr.map((movie: TvShowDetail) => (
-          <WrapMovie key={movie.id}>
-            <Image
-              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-              width={146}
-              height={76}
-              alt={movie.name}
-            />
-            <MovieTitle>{movie.name}</MovieTitle>
-          </WrapMovie>
-        ))}
+        {arr && arr.length > 0 ? (
+          arr.map((movie: TvShowDetail) => (
+            <WrapMovie key={movie.id}>
+              <Image
+                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                width={146}
+                height={76}
+                alt={movie.name}
+              />
+              <MovieTitle>{movie.name}</MovieTitle>
+            </WrapMovie>
+          ))
+        ) : (
+          <p>No TV shows available</p>
+        )}
       </Movies>
     </>
   );

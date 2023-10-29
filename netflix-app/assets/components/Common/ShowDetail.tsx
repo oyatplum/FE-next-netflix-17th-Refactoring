@@ -1,19 +1,24 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { TvShowTypeArray } from '@/assets/interface/interface';
 
-export const ShowDetail = (movieInfo : any) => {
+export const ShowDetail = (obj: TvShowTypeArray) => {
   return (
     <>
-      {movieInfo.movieInfo.title !== undefined ? (
+      {obj && obj.obj ? (
+        obj.obj.title !== undefined ? (
           <>
-            <Title>{movieInfo.movieInfo.title}</Title>
-            <Preview>{movieInfo.movieInfo.overview}</Preview>
+            <Title>{obj.obj.title}</Title>
+            <Preview>{obj.obj.overview}</Preview>
           </>
-        ) : ( 
+        ) : (
           <AlertText>존재하지 않는 ID입니다.</AlertText>
-        )}
+        )
+      ) : (
+        <p>No Detail</p>
+      )}
     </>
-  )
-}
+  );
+};
 const Title = styled.div`
   left: 32px;
   top: 505px;
@@ -40,5 +45,5 @@ const AlertText = styled.p`
   font-weight: 700;
   font-size: 23px;
   color: #ffffff;
-  text-align : center;
+  text-align: center;
 `;

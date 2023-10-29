@@ -41,6 +41,7 @@ export interface TvShowDetail {
   original_language?: string;
   original_name?: string;
   overview?: string;
+  title?: string;
   popularity?: number;
   poster_path?: string;
   vote_average?: number;
@@ -48,5 +49,6 @@ export interface TvShowDetail {
 }
 
 export interface TvShowTypeArray {
-  arr: TvShowDetail[];
+  arr?: TvShowDetail[];
+  obj?: TvShowDetail;
 }

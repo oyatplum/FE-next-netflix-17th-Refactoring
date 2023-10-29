@@ -1,19 +1,26 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { BackButton } from '@/assets/components/Common/BackButton';
-export const Poster = ({getMovieDetail} : any) =>{
+import { TvShowTypeArray } from '@/assets/interface/interface';
+
+export const Poster = ({ obj }: TvShowTypeArray) => {
   return (
     <PosterWrapper>
-      { getMovieDetail.poster_path !== undefined ? ( 
-      <BackImg
-        imageurl={`https://image.tmdb.org/t/p/original${getMovieDetail.poster_path}`}
-      />) : (
-      <BackImg
-        imageurl="/not_found.jpg"
-      />)}
-      <BackButton/>
+      {obj ? (
+        obj.poster_path !== undefined ? (
+          <BackImg
+            imageurl={`https://image.tmdb.org/t/p/original${obj.poster_path}`}
+          />
+        ) : (
+          <BackImg imageurl="/not_found.jpg" />
+        )
+      ) : (
+        <p>No Poster</p>
+      )}
+
+      <BackButton />
     </PosterWrapper>
-  )
-}
+  );
+};
 
 const PosterWrapper = styled.div`
   position: relative;

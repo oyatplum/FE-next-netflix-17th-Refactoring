@@ -5,12 +5,7 @@ import { fetchDetails } from '@/assets/api/requests';
 import { ShowDetail } from '@/assets/components/Common/ShowDetail';
 import { PlayButton } from '@/assets/components/Detail/PlayButton';
 import { Poster } from '@/assets/components/Detail/Poster';
-interface MovieDetail {
-  id: number;
-  poster_path: string;
-  title: string;
-  overview: string;
-}
+import { TvShowDetail } from '@/assets/interface/interface';
 
 async function getMovieDetails(movieId: string) {
   const getMovieDetail = await fetchDetails(movieId);
@@ -22,13 +17,17 @@ interface DetailPageProps {
 }
 
 const DetailPage: React.FC<DetailPageProps> = ({ params }) => {
-  const { getMovieDetail }: { getMovieDetail: MovieDetail } = use(getMovieDetails(params.slug[0]));
+  console.log('detail page');
+  const { getMovieDetail }: { getMovieDetail: TvShowDetail } = use(
+    getMovieDetails(params.slug[0])
+  );
+  console.log('getMovieDetail', getMovieDetail);
   return (
     <>
       <Header>
-        <Poster getMovieDetail = {getMovieDetail} />
-        <PlayButton getMovieDetail = {getMovieDetail}/>
-        <ShowDetail movieInfo = {getMovieDetail} />
+        <Poster obj={getMovieDetail} />
+        <PlayButton obj={getMovieDetail} />
+        <ShowDetail obj={getMovieDetail} />
       </Header>
     </>
   );
