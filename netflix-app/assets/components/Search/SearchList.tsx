@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { BiPlayCircle } from 'react-icons/bi';
 import Link from 'next/link';
+import { HeaderMovies, MovieDetail } from '@/assets/interface/interface';
 
-export default function SearchList({ movies }: any) {
+export default function SearchList({ movies }: HeaderMovies) {
   return (
     <Container>
       {movies.length === 0 ? (
@@ -11,7 +12,7 @@ export default function SearchList({ movies }: any) {
       ) : (
         <></>
       )}
-      {movies.map((movie: any, index: number) => (
+      {movies.map((movie: MovieDetail, index: number) => (
         <MovieItem key={index}>
           <WrapImage>
             {movie.backdrop_path === null ? (

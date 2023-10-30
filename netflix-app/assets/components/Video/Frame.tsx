@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { BackButton } from '@/assets/components/Common/BackButton';
+import { FrameType } from '@/assets/interface/interface';
 
-export const Frame = ({movieKey} : any) => {
+export const Frame = ({ movieKey }: FrameType) => {
   return (
     <FrameWrapper>
       <Iframe
@@ -13,14 +14,14 @@ export const Frame = ({movieKey} : any) => {
       ></Iframe>
       <BackButton />
     </FrameWrapper>
-  )
-}
+  );
+};
 
 const FrameWrapper = styled.div`
   position: relative;
   display: flex;
-  height : 300px;
-`
+  height: 300px;
+`;
 const Iframe = styled.iframe`
   width: 100%;
   height: 100%;

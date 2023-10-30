@@ -6,6 +6,7 @@ import { fetchSearch, fetchTopRated } from '@/assets/api/requests';
 import { BiSearch, BiX } from 'react-icons/bi';
 import SearchResultText from '@/assets/components/Search/SearchResultText';
 import { useInView } from 'react-intersection-observer';
+import { MovieDetail } from '@/assets/interface/interface';
 
 async function getSearchData(e: string) {
   const searchData = await fetchSearch(e);
@@ -18,10 +19,10 @@ async function getTopRatedData(page?: number) {
 }
 
 export default function SearchPage() {
-  const [searched, setSearched] = useState([] as any);
-  const [inputText, setInputText] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const [page, setPage] = useState(2);
+  const [searched, setSearched] = useState<MovieDetail[]>([]);
+  const [inputText, setInputText] = useState<string>('');
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(2);
   const [endRef, inView] = useInView();
   const inputRef = useRef(null as any);
   if (inputRef.current) {
@@ -30,29 +31,37 @@ export default function SearchPage() {
   useEffect(() => {
     async function fetchData() {
       const topRatedData = await getTopRatedData();
+      console.log('topRatedData', topRatedData);
       setSearched(topRatedData[0]);
     }
     fetchData();
     window.scrollTo(0, 0);
   }, []);
 
+  console.log('searched', searched);
+
   useEffect(() => {
     if (inputText.length == 0) setIsSearching(false);
     else setIsSearching(true);
   }, [inputText]);
-  
+
   useEffect(() => {
     async function fetchData() {
       const topRatedData = await getTopRatedData(page);
-      setSearched((prevSearched: any) => [...prevSearched, ...topRatedData[0]]);
+      if (topRatedData) {
+        setSearched((prevSearched: MovieDetail[]) => [
+          ...prevSearched,
+          ...topRatedData[0],
+        ]);
+      }
     }
     if (inView && !isSearching) {
       setPage((page) => page + 1);
       fetchData();
     }
   }, [inView]);
-  
-  const handleChange = async (e: { target: { value: any } }) => {
+
+  const handleChange = async (e: { target: { value: string } }) => {
     setInputText(e.target.value);
 
     if (e.target.value === '') {
@@ -63,15 +72,15 @@ export default function SearchPage() {
       setSearched(searchResults);
     }
   };
-  
-  const handleDelete = async() => {
+
+  const handleDelete = async () => {
     setInputText('');
     const initialResults = await getTopRatedData();
     setSearched(initialResults[0]);
-    
+
     if (inputRef.current) {
-			inputRef.current.focus();
-		}
+      inputRef.current.focus();
+    }
   };
   return (
     <Contatiner>
@@ -81,7 +90,7 @@ export default function SearchPage() {
             <BiSearch color="#FFFFFF" size={22} />
           </ButtonWrapper>
           <SearchBox
-            ref = {inputRef}
+            ref={inputRef}
             value={inputText}
             onChange={handleChange}
             placeholder="Search for a movie"
@@ -94,7 +103,7 @@ export default function SearchPage() {
         <SearchResultText isSearch={isSearching} />
 
         <SearchList movies={searched} />
-        <div ref = {endRef}></div>
+        <div ref={endRef}></div>
       </SearchWrapper>
     </Contatiner>
   );

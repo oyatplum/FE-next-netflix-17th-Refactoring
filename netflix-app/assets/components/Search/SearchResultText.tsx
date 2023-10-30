@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
+import { IsSearch } from '@/assets/interface/interface';
 
-export default function SearchResultText({ isSearch }: any) {
+export default function SearchResultText({ isSearch }: IsSearch) {
   return (
     <Container>
       <ResultWrapper>

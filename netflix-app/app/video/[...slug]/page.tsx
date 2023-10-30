@@ -1,47 +1,28 @@
 'use client';
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useRouter } from 'next/navigation';
 import { fetchVideos, fetchDetails } from '@/assets/api/requests';
 import { ShowDetail } from '@/assets/components/Common/ShowDetail';
 import { Frame } from '@/assets/components/Video/Frame';
+import {
+  VideoDetailPageProps,
+  MovieVideo,
+  MovieVideoInfo,
+} from '@/assets/interface/interface';
+
 async function getMovieVideo(movieId: string) {
   const getVideo = await fetchVideos(movieId);
-
   return { getVideo };
 }
 
 async function getMovieDetails(movieId: string) {
   const getMovieDetail = await fetchDetails(movieId);
-
   return { getMovieDetail };
 }
 
-interface VideoResult {
-  key: string;
-}
-
-interface MovieInfo {
-  title: string;
-  overview: string;
-}
-
-interface MovieVideo {
-  getVideo: {
-    results: VideoResult[];
-  };
-}
-
-interface DetailPageProps {
-  params: {
-    slug: string[];
-  };
-}
-
-const DetailPage: React.FC<DetailPageProps> = ({ params }) => {
-  const router = useRouter();
+const DetailPage: React.FC<VideoDetailPageProps> = ({ params }) => {
   const [movieDetail, setMovieDetail] = useState<MovieVideo | null>(null);
-  const [movieInfo, setMovieInfo] = useState<MovieInfo | null>(null);
+  const [movieInfo, setMovieInfo] = useState<MovieVideoInfo | null>(null);
   const [movieKey, setMovieKey] = useState<string>('');
 
   useEffect(() => {
@@ -57,6 +38,8 @@ const DetailPage: React.FC<DetailPageProps> = ({ params }) => {
     }
     fetchData();
   }, []);
+  console.log('movieDetail', movieDetail);
+  console.log('movieInfo', movieInfo);
 
   if (!movieInfo) {
     return <div>Loading...</div>;
@@ -65,8 +48,8 @@ const DetailPage: React.FC<DetailPageProps> = ({ params }) => {
   return (
     <Container>
       <Header>
-        <Frame movieKey = {movieKey}/>
-        <ShowDetail movieInfo = {movieInfo}/>
+        <Frame movieKey={movieKey} />
+        <ShowDetail obj={movieInfo} />
       </Header>
     </Container>
   );

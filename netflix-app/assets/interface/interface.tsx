@@ -27,7 +27,6 @@ export interface MovieDetail {
 }
 
 export interface MovieTypeArray {
-  //arr?: MovieDetail[];
   obj: MovieDetail;
 }
 
@@ -51,4 +50,34 @@ export interface TvShowDetail {
 export interface TvShowTypeArray {
   arr?: TvShowDetail[];
   obj?: TvShowDetail;
+}
+
+export interface IsSearch {
+  isSearch: boolean;
+}
+
+export interface VideoResult {
+  key: string;
+}
+
+export interface MovieVideoInfo {
+  title: string;
+  overview: string;
+}
+
+export interface MovieVideo {
+  getVideo: {
+    id: number;
+    results: VideoResult[];
+  };
+}
+
+export interface VideoDetailPageProps {
+  params: {
+    slug: string[];
+  };
+}
+
+export interface FrameType {
+  movieKey: string;
 }
