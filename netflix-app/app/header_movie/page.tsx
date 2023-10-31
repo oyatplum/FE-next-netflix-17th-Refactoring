@@ -1,9 +1,10 @@
 'use client';
 import React from 'react';
 import { fetchNowPlaying } from '@/assets/api/requests';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Link from 'next/link';
 import MovieCard from '@/assets/components/Common/MovieCard';
+import theme from '../style/theme';
 
 async function getMovieData() {
   const nowPlaingData = await fetchNowPlaying();
@@ -19,20 +20,15 @@ export default async function HeaderMoviePage() {
 
   return (
     <Container>
-      <Title>{'Movies'}</Title>
-      <MovieCard movies={nowPlayingMovie.nowPlaingData[0]} />
+      <ThemeProvider theme={theme}>
+        <Title>{'Movies'}</Title>
+        <MovieCard movies={nowPlayingMovie.nowPlaingData[0]} />
+      </ThemeProvider>
     </Container>
   );
 }
 
 const Container = styled.div``;
 const Title = styled.div`
-  width: 300px;
-  height: 45px;
-  font-weight: 700;
-  font-size: 26.7482px;
-  line-height: 20px;
-  letter-spacing: -0.0733945px;
-  color: #ffffff;
-  margin: 60px 0 20px 0;
+  ${(props) => props.theme.headerTitle}
 `;

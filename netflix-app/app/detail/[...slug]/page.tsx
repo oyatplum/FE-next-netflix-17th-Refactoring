@@ -1,11 +1,12 @@
 'use client';
 import React, { use } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { fetchDetails } from '@/assets/api/requests';
 import { ShowDetail } from '@/assets/components/Common/ShowDetail';
 import { PlayButton } from '@/assets/components/Detail/PlayButton';
 import { Poster } from '@/assets/components/Detail/Poster';
 import { TvShowDetail } from '@/assets/interface/interface';
+import theme from '@/app/style/theme';
 
 async function getMovieDetails(movieId: string) {
   const getMovieDetail = await fetchDetails(movieId);
@@ -24,24 +25,19 @@ const DetailPage: React.FC<DetailPageProps> = ({ params }) => {
   console.log('getMovieDetail', getMovieDetail);
   return (
     <>
-      <Header>
-        <Poster obj={getMovieDetail} />
-        <PlayButton obj={getMovieDetail} />
-        <ShowDetail obj={getMovieDetail} />
-      </Header>
+      <ThemeProvider theme={theme}>
+        <Header>
+          <Poster obj={getMovieDetail} />
+          <PlayButton obj={getMovieDetail} />
+          <ShowDetail obj={getMovieDetail} />
+        </Header>
+      </ThemeProvider>
     </>
   );
 };
 
 const Header = styled.div`
-  width: 375px;
-  height: 415px;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.45) 0%,
-    rgba(0, 0, 0, 0) 87.26%,
-    #000000 100%
-  );
+  ${(props) => props.theme.detailCss}
 `;
 
 export default DetailPage;

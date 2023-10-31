@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { fetchVideos, fetchDetails } from '@/assets/api/requests';
 import { ShowDetail } from '@/assets/components/Common/ShowDetail';
 import { Frame } from '@/assets/components/Video/Frame';
@@ -9,6 +9,7 @@ import {
   MovieVideo,
   MovieVideoInfo,
 } from '@/assets/interface/interface';
+import theme from '@/app/style/theme';
 
 async function getMovieVideo(movieId: string) {
   const getVideo = await fetchVideos(movieId);
@@ -47,24 +48,19 @@ const DetailPage: React.FC<VideoDetailPageProps> = ({ params }) => {
 
   return (
     <Container>
-      <Header>
-        <Frame movieKey={movieKey} />
-        <ShowDetail obj={movieInfo} />
-      </Header>
+      <ThemeProvider theme={theme}>
+        <Header>
+          <Frame movieKey={movieKey} />
+          <ShowDetail obj={movieInfo} />
+        </Header>
+      </ThemeProvider>
     </Container>
   );
 };
 
 const Header = styled.div`
-  width: 375px;
-  height: 415px;
+  ${(props) => props.theme.detailCss}
   padding-top: 10px;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.45) 0%,
-    rgba(0, 0, 0, 0) 87.26%,
-    #000000 100%
-  );
 `;
 
 const Container = styled.div``;

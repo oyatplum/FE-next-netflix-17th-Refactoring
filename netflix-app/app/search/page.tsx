@@ -1,12 +1,13 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import SearchList from '@/assets/components/Search/SearchList';
 import { fetchSearch, fetchTopRated } from '@/assets/api/requests';
 import { BiSearch, BiX } from 'react-icons/bi';
 import SearchResultText from '@/assets/components/Search/SearchResultText';
 import { useInView } from 'react-intersection-observer';
 import { MovieDetail } from '@/assets/interface/interface';
+import theme from '../style/theme';
 
 async function getSearchData(e: string) {
   const searchData = await fetchSearch(e);
@@ -84,27 +85,29 @@ export default function SearchPage() {
   };
   return (
     <Contatiner>
-      <SearchWrapper>
-        <SearchInputWrapper>
-          <ButtonWrapper>
-            <BiSearch color="#FFFFFF" size={22} />
-          </ButtonWrapper>
-          <SearchBox
-            ref={inputRef}
-            value={inputText}
-            onChange={handleChange}
-            placeholder="Search for a movie"
-          ></SearchBox>
-          <ButtonWrapper>
-            <BiX color="#FFFFFF" size={27} onClick={handleDelete} />
-          </ButtonWrapper>
-        </SearchInputWrapper>
+      <ThemeProvider theme={theme}>
+        <SearchWrapper>
+          <SearchInputWrapper>
+            <ButtonWrapper>
+              <BiSearch color="#FFFFFF" size={22} />
+            </ButtonWrapper>
+            <SearchBox
+              ref={inputRef}
+              value={inputText}
+              onChange={handleChange}
+              placeholder="Search for a movie"
+            ></SearchBox>
+            <ButtonWrapper>
+              <BiX color="#FFFFFF" size={27} onClick={handleDelete} />
+            </ButtonWrapper>
+          </SearchInputWrapper>
 
-        <SearchResultText isSearch={isSearching} />
+          <SearchResultText isSearch={isSearching} />
 
-        <SearchList movies={searched} />
-        <div ref={endRef}></div>
-      </SearchWrapper>
+          <SearchList movies={searched} />
+          <div ref={endRef}></div>
+        </SearchWrapper>
+      </ThemeProvider>
     </Contatiner>
   );
 }
@@ -112,15 +115,14 @@ const SearchWrapper = styled.div`
   padding-bottom: 45px;
 `;
 const SearchInputWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  ${(props) => props.theme.alignCenter}
   margin-top: 50px;
   height: 50px;
   background: #424242;
 `;
 const SearchBox = styled.input`
   width: 100%;
-  color: white;
+  color: ${({ theme }) => theme.color.white}
   font-weight: 400;
   font-size: 15.213px;
   line-height: 31px;
