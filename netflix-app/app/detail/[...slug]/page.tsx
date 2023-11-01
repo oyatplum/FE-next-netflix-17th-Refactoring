@@ -37,7 +37,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ params }) => {
 };
 
 const Header = styled.div`
-  ${(props) => props.theme.detailCss}
+  ${(props) => props.theme.detailCss};
 `;
 
 export default DetailPage;

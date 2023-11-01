@@ -36,7 +36,7 @@ export const Button = ({ obj }: MovieTypeArray) => {
 
 const ButtonImage = styled.img``;
 const Container = styled.div`
-  ${(props) => props.theme.justifyCenter}
+  ${(props) => props.theme.justifyCenter};
   height: 85px;
   margin-top: 15px;
   :hover {
@@ -45,7 +45,7 @@ const Container = styled.div`
   }
 `;
 const MyListButton = styled.div`
-  ${(props) => props.theme.flexColumn}
+  ${(props) => props.theme.flexColumn};
   align-items: center;
   cursor: pointer;
   .text {
@@ -62,7 +62,7 @@ const PlayButton = styled.div`
   height: 45px;
   background: #c4c4c4;
   border-radius: 5.625px;
-  ${(props) => props.theme.alignCenter}
+  ${(props) => props.theme.alignCenter};
   padding-left: 19px;
   margin: 0 45px 0 40px;
   cursor: pointer;

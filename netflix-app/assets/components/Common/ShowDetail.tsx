@@ -1,21 +1,24 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { TvShowTypeArray } from '@/assets/interface/interface';
+import theme from '@/app/style/theme';
 
 export const ShowDetail = (obj: TvShowTypeArray) => {
   return (
     <>
-      {obj && obj.obj ? (
-        obj.obj.title !== undefined ? (
-          <>
-            <Title>{obj.obj.title}</Title>
-            <Preview>{obj.obj.overview}</Preview>
-          </>
+      <ThemeProvider theme={theme}>
+        {obj && obj.obj ? (
+          obj.obj.title !== undefined ? (
+            <>
+              <Title>{obj.obj.title}</Title>
+              <Preview>{obj.obj.overview}</Preview>
+            </>
+          ) : (
+            <AlertText>존재하지 않는 ID입니다.</AlertText>
+          )
         ) : (
-          <AlertText>존재하지 않는 ID입니다.</AlertText>
-        )
-      ) : (
-        <p>No Detail</p>
-      )}
+          <p>No Detail</p>
+        )}
+      </ThemeProvider>
     </>
   );
 };
@@ -26,7 +29,7 @@ const Title = styled.div`
   font-weight: 700;
   font-size: 26.7482px;
   line-height: 30px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.color.white};
   margin: 32px 0 0 32px;
 `;
 
@@ -44,6 +47,6 @@ const AlertText = styled.p`
   height: 50px;
   font-weight: 700;
   font-size: 23px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.color.white};
   text-align: center;
 `;

@@ -30,8 +30,8 @@ export default function app() {
 }
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.color.black}
-  ${(props) => props.theme.alignCenter}
+  background-color: ${({ theme }) => theme.color.black};
+  ${(props) => props.theme.alignCenter};
   height: 100%;
 `;
 
@@ -43,7 +43,7 @@ const WrapLanding = styled.div`
 const WrapEntire = styled.div`
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => theme.color.black}
-  ${(props) => props.theme.flexCenter}
+  background: ${({ theme }) => theme.color.black};
+  ${(props) => props.theme.flexCenter};
   cursor: pointer;
 `;

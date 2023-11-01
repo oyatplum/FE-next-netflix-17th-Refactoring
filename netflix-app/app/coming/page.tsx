@@ -26,5 +26,5 @@ export default async function ComingPage() {
 }
 
 const Title = styled.div`
-  ${(props) => props.theme.headerTitle}
+  ${(props) => props.theme.headerTitle};
 `;

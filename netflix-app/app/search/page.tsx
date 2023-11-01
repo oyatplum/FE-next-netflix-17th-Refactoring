@@ -115,14 +115,14 @@ const SearchWrapper = styled.div`
   padding-bottom: 45px;
 `;
 const SearchInputWrapper = styled.div`
-  ${(props) => props.theme.alignCenter}
+  ${(props) => props.theme.alignCenter};
   margin-top: 50px;
   height: 50px;
   background: #424242;
 `;
 const SearchBox = styled.input`
   width: 100%;
-  color: ${({ theme }) => theme.color.white}
+  color: ${({ theme }) => theme.color.white};
   font-weight: 400;
   font-size: 15.213px;
   line-height: 31px;

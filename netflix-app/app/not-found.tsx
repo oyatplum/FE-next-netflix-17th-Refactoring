@@ -48,11 +48,11 @@ const Title = styled.div`
   height: 50px;
   font-weight: 700;
   font-size: 23px;
-  color: ${({ theme }) => theme.color.white}
-  text-align : center;
+  color: ${({ theme }) => theme.color.white};
+  text-align: center;
 `;
 const Header = styled.div`
-  ${(props) => props.theme.detailCss}
+  ${(props) => props.theme.detailCss};
 `;
 const BackImg = styled.div<{ imageurl: string }>`
   width: 375px;

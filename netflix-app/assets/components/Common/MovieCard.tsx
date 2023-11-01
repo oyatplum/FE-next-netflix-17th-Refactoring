@@ -1,28 +1,31 @@
 'use client';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HeaderMovies, MovieDetail } from '@/assets/interface/interface';
+import theme from '@/app/style/theme';
 
 export default function MovieCard({ movies }: HeaderMovies) {
   return (
     <>
-      <Movies>
-        {movies.map((movie: MovieDetail) => (
-          <WrapMovie key={movie.id}>
-            <Image
-              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-              width={146}
-              height={76}
-              alt={movie.title}
-            />
-            <WrapTitle href={`/detail/${movie.id}`}>
-              <MovieTitle>{movie.title}</MovieTitle>
-            </WrapTitle>
-          </WrapMovie>
-        ))}
-      </Movies>
+      <ThemeProvider theme={theme}>
+        <Movies>
+          {movies.map((movie: MovieDetail) => (
+            <WrapMovie key={movie.id}>
+              <Image
+                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                width={146}
+                height={76}
+                alt={movie.title}
+              />
+              <WrapTitle href={`/detail/${movie.id}`}>
+                <MovieTitle>{movie.title}</MovieTitle>
+              </WrapTitle>
+            </WrapMovie>
+          ))}
+        </Movies>
+      </ThemeProvider>
     </>
   );
 }
@@ -32,13 +35,11 @@ const WrapTitle = styled(Link)`
   margin-left: 10px;
 `;
 const WrapMovie = styled.div`
-  display: flex;
   margin-bottom: 10px;
   width: 375px;
   height: 76px;
-  display: flex;
   flex-direction: row;
-  align-items: center;
+  ${(props) => props.theme.alignCenter};
   background: #424242;
 `;
 const MovieTitle = styled.p`
@@ -49,8 +50,7 @@ const MovieTitle = styled.p`
   width: 180px;
 `;
 const Movies = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: center;
+  ${(props) => props.theme.alignCenter};
   padding-bottom: 60px;
 `;

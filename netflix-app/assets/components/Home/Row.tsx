@@ -66,7 +66,7 @@ const Slider = styled.div`
 `;
 const ArrowWrapper = styled.div`
   padding-bottom: 25px;
-  ${(props) => props.theme.alignCenter}
+  ${(props) => props.theme.alignCenter};
   font-size: 30px;
   cursor: pointer;
   color: #c4c4c4;

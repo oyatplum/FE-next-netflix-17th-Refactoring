@@ -1,27 +1,30 @@
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import playButton from '@/assets/components/images/Button/play.svg';
 import { TvShowTypeArray } from '@/assets/interface/interface';
+import theme from '@/app/style/theme';
 
 export const PlayButton = ({ obj }: TvShowTypeArray) => {
   return (
     <>
-      {obj ? (
-        obj.id !== undefined ? (
-          <Button>
-            <PlayButtonWrapper>
-              <Link key={obj.id} href={`/video/${obj.id}`} className="link">
-                <ButtonImage src={playButton.src} />
-                <div className="text">{'Play'}</div>
-              </Link>
-            </PlayButtonWrapper>
-          </Button>
+      <ThemeProvider theme={theme}>
+        {obj ? (
+          obj.id !== undefined ? (
+            <Button>
+              <PlayButtonWrapper>
+                <Link key={obj.id} href={`/video/${obj.id}`} className="link">
+                  <ButtonImage src={playButton.src} />
+                  <div className="text">{'Play'}</div>
+                </Link>
+              </PlayButtonWrapper>
+            </Button>
+          ) : (
+            <></>
+          )
         ) : (
-          <></>
-        )
-      ) : (
-        <p>No Button</p>
-      )}
+          <p>No Button</p>
+        )}
+      </ThemeProvider>
     </>
   );
 };
@@ -37,9 +40,7 @@ const PlayButtonWrapper = styled.div`
   height: 45px;
   background: #c4c4c4;
   border-radius: 5.625px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${(props) => props.theme.flexCenter};
   padding-left: 19px;
   margin: 13px 36px 0 36px;
   cursor: pointer;
@@ -54,7 +55,7 @@ const PlayButtonWrapper = styled.div`
     font-weight: 600;
     font-size: 20.4624px;
     line-height: 30px;
-    color: #000000;
+    color: ${({ theme }) => theme.color.black};
   }
 `;
 const ButtonImage = styled.img``;

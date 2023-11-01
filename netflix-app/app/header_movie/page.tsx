@@ -30,5 +30,5 @@ export default async function HeaderMoviePage() {
 
 const Container = styled.div``;
 const Title = styled.div`
-  ${(props) => props.theme.headerTitle}
+  ${(props) => props.theme.headerTitle};
 `;

@@ -59,7 +59,7 @@ const DetailPage: React.FC<VideoDetailPageProps> = ({ params }) => {
 };
 
 const Header = styled.div`
-  ${(props) => props.theme.detailCss}
+  ${(props) => props.theme.detailCss};
   padding-top: 10px;
 `;
 

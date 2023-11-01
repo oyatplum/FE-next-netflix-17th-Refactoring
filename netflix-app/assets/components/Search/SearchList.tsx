@@ -1,45 +1,48 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Image from 'next/image';
 import { BiPlayCircle } from 'react-icons/bi';
 import Link from 'next/link';
 import { HeaderMovies, MovieDetail } from '@/assets/interface/interface';
+import theme from '@/app/style/theme';
 
 export default function SearchList({ movies }: HeaderMovies) {
   return (
     <Container>
-      {movies.length === 0 ? (
-        <ResultNoneText>There is no results. . .</ResultNoneText>
-      ) : (
-        <></>
-      )}
-      {movies.map((movie: MovieDetail, index: number) => (
-        <MovieItem key={index}>
-          <WrapImage>
-            {movie.backdrop_path === null ? (
-              <Image
-                src="/netflix-logo.png"
-                width={146}
-                height={76}
-                alt={movie.title}
-              />
-            ) : (
-              <Image
-                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                width={146}
-                height={76}
-                alt={movie.title}
-              />
-            )}
-          </WrapImage>
+      <ThemeProvider theme={theme}>
+        {movies.length === 0 ? (
+          <ResultNoneText>There is no results. . .</ResultNoneText>
+        ) : (
+          <></>
+        )}
+        {movies.map((movie: MovieDetail, index: number) => (
+          <MovieItem key={index}>
+            <WrapImage>
+              {movie.backdrop_path === null ? (
+                <Image
+                  src="/netflix-logo.png"
+                  width={146}
+                  height={76}
+                  alt={movie.title}
+                />
+              ) : (
+                <Image
+                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  width={146}
+                  height={76}
+                  alt={movie.title}
+                />
+              )}
+            </WrapImage>
 
-          <WrapTitle href={`/detail/${movie.id}`}>
-            <MovieTitle>{movie.title}</MovieTitle>
-          </WrapTitle>
-          <WrapPlayButton href={`/video/${movie.id}`}>
-            <BiPlayCircle size={25} />
-          </WrapPlayButton>
-        </MovieItem>
-      ))}
+            <WrapTitle href={`/detail/${movie.id}`}>
+              <MovieTitle>{movie.title}</MovieTitle>
+            </WrapTitle>
+            <WrapPlayButton href={`/video/${movie.id}`}>
+              <BiPlayCircle size={25} />
+            </WrapPlayButton>
+          </MovieItem>
+        ))}
+      </ThemeProvider>
     </Container>
   );
 }
@@ -52,9 +55,8 @@ const MovieItem = styled.div`
   margin-bottom: 10px;
   width: 375px;
   height: 76px;
-  display: flex;
   flex-direction: row;
-  align-items: center;
+  ${(props) => props.theme.alignCenter};
   background: #424242;
 `;
 const WrapImage = styled.div`
@@ -62,17 +64,17 @@ const WrapImage = styled.div`
   height: 76px;
 `;
 const MovieTitle = styled.p`
-  color: white;
+  color: ${({ theme }) => theme.color.white};
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   width: 180px;
 `;
 const ResultNoneText = styled.p`
-  color: white;
+  color: ${({ theme }) => theme.color.white};
 `;
 const WrapPlayButton = styled(Link)`
   cursor: pointer;
-  color: white;
+  color: ${({ theme }) => theme.color.white};
 `;
 const Container = styled.div``;

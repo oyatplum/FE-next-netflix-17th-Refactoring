@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, ThemeProvider } from 'styled-components';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { FiSearch } from 'react-icons/fi';
 import { MdOutlineVideoLibrary } from 'react-icons/md';
@@ -7,6 +7,7 @@ import { BsList } from 'react-icons/bs';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { saveAs } from 'file-saver';
+import theme from '@/app/style/theme';
 
 export const Footer = () => {
   const router = useRouter();
@@ -15,65 +16,69 @@ export const Footer = () => {
   const [selected, setSelected] = useState<string>('home');
 
   const handleDownload = () => {
-    const blob = new Blob(["힝 속았지 ??????????"], { type: 'text/plain;charset=utf-8' });
+    const blob = new Blob(['힝 속았지 ??????????'], {
+      type: 'text/plain;charset=utf-8',
+    });
     saveAs(blob, 'hing.txt');
   };
   return (
     <Container>
-      {isRoot ? (
-        <></>
-      ) : (
-        <FooterWrapper>
-          <FooterItem
-            onClick={() => {
-              setSelected('home');
-              router.push('/home');
-            }}
-            selected={pathname === '/home' ? true : false}
-          >
-            <BiHomeAlt2 />
-            <FooterItemText>Home</FooterItemText>
-          </FooterItem>
-          <FooterItem
-            onClick={() => {
-              setSelected('search');
-              router.push('/search');
-            }}
-            selected={pathname === '/search' ? true : false}
-          >
-            <FiSearch />
-            <FooterItemText>Search</FooterItemText>
-          </FooterItem>
-          <FooterItem
-            onClick={() => {
-              setSelected('comming');
-              router.push('/coming');
-            }}
-            selected={selected === 'comming' ? true : false}
-          >
-            <MdOutlineVideoLibrary />
-            <FooterItemText>Coming Soon</FooterItemText>
-          </FooterItem>
-          <FooterItem
-            onClick={() => {
-              handleDownload();
-            }}
-            selected={selected === 'donwloads' ? true : false}
-          >
-            <HiDownload />
-            <FooterItemText>Downloads</FooterItemText>
-          </FooterItem>
-          <FooterItem
-            onClick={() => {
-              setSelected('more');
-            }}
-            selected={selected === 'more' ? true : false}
-          >
-            <BsList />
-            <FooterItemText>More</FooterItemText>
-          </FooterItem>
-        </FooterWrapper>
-      )}
+      <ThemeProvider theme={theme}>
+        {isRoot ? (
+          <></>
+        ) : (
+          <FooterWrapper>
+            <FooterItem
+              onClick={() => {
+                setSelected('home');
+                router.push('/home');
+              }}
+              selected={pathname === '/home' ? true : false}
+            >
+              <BiHomeAlt2 />
+              <FooterItemText>Home</FooterItemText>
+            </FooterItem>
+            <FooterItem
+              onClick={() => {
+                setSelected('search');
+                router.push('/search');
+              }}
+              selected={pathname === '/search' ? true : false}
+            >
+              <FiSearch />
+              <FooterItemText>Search</FooterItemText>
+            </FooterItem>
+            <FooterItem
+              onClick={() => {
+                setSelected('comming');
+                router.push('/coming');
+              }}
+              selected={selected === 'comming' ? true : false}
+            >
+              <MdOutlineVideoLibrary />
+              <FooterItemText>Coming Soon</FooterItemText>
+            </FooterItem>
+            <FooterItem
+              onClick={() => {
+                handleDownload();
+              }}
+              selected={selected === 'donwloads' ? true : false}
+            >
+              <HiDownload />
+              <FooterItemText>Downloads</FooterItemText>
+            </FooterItem>
+            <FooterItem
+              onClick={() => {
+                setSelected('more');
+              }}
+              selected={selected === 'more' ? true : false}
+            >
+              <BsList />
+              <FooterItemText>More</FooterItemText>
+            </FooterItem>
+          </FooterWrapper>
+        )}
+      </ThemeProvider>
     </Container>
   );
 };
@@ -101,10 +106,9 @@ const FooterItem = styled.div<{ selected: boolean }>`
   color: ${(props) => (props.selected ? '#E0E0E0' : '#757575')};
   font-size: 25px;
   margin-top: 3px;
-  display: flex;
+
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${(props) => props.theme.flexCenter};
   &:hover {
     color: #bdbdbd;
     ${FooterItemText} {
