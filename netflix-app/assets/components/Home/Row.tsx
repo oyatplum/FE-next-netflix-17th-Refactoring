@@ -2,10 +2,11 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import theme from '@/app/style/theme';
+import theme, { alignCenter } from '@/app/style/theme';
 import { RowInfo, MovieDetail } from '@/assets/interface/interface';
 
 export const Row = ({ title, id, isRoundRow, movies }: RowInfo) => {
+  console.log('Row');
   return (
     <Movies>
       <ThemeProvider theme={theme}>
@@ -66,10 +67,10 @@ const Slider = styled.div`
 `;
 const ArrowWrapper = styled.div`
   padding-bottom: 25px;
-  ${(props) => props.theme.alignCenter};
+  ${alignCenter};
   font-size: 30px;
   cursor: pointer;
-  color: #c4c4c4;
+  color: ${({ theme }) => theme.color.lightGray};
   :hover {
     transform: scale(1.25);
     transition: transform 0.35s;

@@ -4,11 +4,11 @@ import { fetchNowPlaying } from '@/assets/api/requests';
 import styled, { ThemeProvider } from 'styled-components';
 import Link from 'next/link';
 import MovieCard from '@/assets/components/Common/MovieCard';
-import theme from '../style/theme';
+import theme, { headerTitle } from '../style/theme';
 
 async function getMovieData() {
   const nowPlaingData = await fetchNowPlaying();
-  console.log('header_movies');
+  //console.log('header_movies');
 
   return {
     nowPlaingData,
@@ -16,6 +16,7 @@ async function getMovieData() {
 }
 
 export default async function HeaderMoviePage() {
+  console.log('header-movie page');
   const nowPlayingMovie = await getMovieData();
 
   return (
@@ -30,5 +31,5 @@ export default async function HeaderMoviePage() {
 
 const Container = styled.div``;
 const Title = styled.div`
-  ${(props) => props.theme.headerTitle};
+  ${headerTitle};
 `;

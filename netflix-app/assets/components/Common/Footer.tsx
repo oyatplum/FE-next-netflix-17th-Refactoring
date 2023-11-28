@@ -7,9 +7,10 @@ import { BsList } from 'react-icons/bs';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { saveAs } from 'file-saver';
-import theme from '@/app/style/theme';
+import theme, { flexCenter } from '@/app/style/theme';
 
 export const Footer = () => {
+  console.log('Footer');
   const router = useRouter();
   const pathname = usePathname();
   const isRoot = pathname === '/';
@@ -108,7 +109,7 @@ const FooterItem = styled.div<{ selected: boolean }>`
   margin-top: 3px;
 
   flex-direction: column;
-  ${(props) => props.theme.flexCenter};
+  ${flexCenter};
   &:hover {
     color: #bdbdbd;
     ${FooterItemText} {

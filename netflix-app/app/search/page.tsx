@@ -7,7 +7,7 @@ import { BiSearch, BiX } from 'react-icons/bi';
 import SearchResultText from '@/assets/components/Search/SearchResultText';
 import { useInView } from 'react-intersection-observer';
 import { MovieDetail } from '@/assets/interface/interface';
-import theme from '../style/theme';
+import theme, { alignCenter } from '../style/theme';
 
 async function getSearchData(e: string) {
   const searchData = await fetchSearch(e);
@@ -20,6 +20,7 @@ async function getTopRatedData(page?: number) {
 }
 
 export default function SearchPage() {
+  console.log('search page');
   const [searched, setSearched] = useState<MovieDetail[]>([]);
   const [inputText, setInputText] = useState<string>('');
   const [isSearching, setIsSearching] = useState<boolean>(false);
@@ -32,14 +33,14 @@ export default function SearchPage() {
   useEffect(() => {
     async function fetchData() {
       const topRatedData = await getTopRatedData();
-      console.log('topRatedData', topRatedData);
+      //console.log('topRatedData', topRatedData);
       setSearched(topRatedData[0]);
     }
     fetchData();
     window.scrollTo(0, 0);
   }, []);
 
-  console.log('searched', searched);
+  //console.log('searched', searched);
 
   useEffect(() => {
     if (inputText.length == 0) setIsSearching(false);
@@ -115,10 +116,10 @@ const SearchWrapper = styled.div`
   padding-bottom: 45px;
 `;
 const SearchInputWrapper = styled.div`
-  ${(props) => props.theme.alignCenter};
+  ${alignCenter};
   margin-top: 50px;
   height: 50px;
-  background: #424242;
+  background: ${({ theme }) => theme.color.gray};
 `;
 const SearchBox = styled.input`
   width: 100%;
@@ -128,7 +129,7 @@ const SearchBox = styled.input`
   line-height: 31px;
   border: none;
   letter-spacing: 0.206667px;
-  background: #424242;
+  background: ${({ theme }) => theme.color.gray};
   outline: none;
 `;
 const ButtonWrapper = styled.div`

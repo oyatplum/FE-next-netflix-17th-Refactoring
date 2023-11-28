@@ -4,10 +4,15 @@ import listButton from '../images/Button/list.svg';
 import playButton from '../images/Button/play.svg';
 import infoButton from '../images/Button/info.svg';
 import Link from 'next/link';
-import theme from '@/app/style/theme';
+import theme, {
+  flexColumn,
+  alignCenter,
+  justifyCenter,
+} from '@/app/style/theme';
 import { MovieTypeArray } from '@/assets/interface/interface';
 
 export const Button = ({ obj }: MovieTypeArray) => {
+  console.log('Button');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -36,7 +41,7 @@ export const Button = ({ obj }: MovieTypeArray) => {
 
 const ButtonImage = styled.img``;
 const Container = styled.div`
-  ${(props) => props.theme.justifyCenter};
+  ${justifyCenter}
   height: 85px;
   margin-top: 15px;
   :hover {
@@ -45,7 +50,7 @@ const Container = styled.div`
   }
 `;
 const MyListButton = styled.div`
-  ${(props) => props.theme.flexColumn};
+  $${flexColumn};
   align-items: center;
   cursor: pointer;
   .text {
@@ -60,9 +65,9 @@ const MyListButton = styled.div`
 const PlayButton = styled.div`
   width: 110.62px;
   height: 45px;
-  background: #c4c4c4;
+  background: ${({ theme }) => theme.color.lightGray};
   border-radius: 5.625px;
-  ${(props) => props.theme.alignCenter};
+  ${alignCenter};
   padding-left: 19px;
   margin: 0 45px 0 40px;
   cursor: pointer;

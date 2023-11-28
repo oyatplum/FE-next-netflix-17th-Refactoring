@@ -3,9 +3,10 @@ import Image from 'next/image';
 import { BiPlayCircle } from 'react-icons/bi';
 import Link from 'next/link';
 import { HeaderMovies, MovieDetail } from '@/assets/interface/interface';
-import theme from '@/app/style/theme';
+import theme, { alignCenter } from '@/app/style/theme';
 
 export default function SearchList({ movies }: HeaderMovies) {
+  console.log('SearchList');
   return (
     <Container>
       <ThemeProvider theme={theme}>
@@ -56,8 +57,8 @@ const MovieItem = styled.div`
   width: 375px;
   height: 76px;
   flex-direction: row;
-  ${(props) => props.theme.alignCenter};
-  background: #424242;
+  ${alignCenter};
+  background: ${({ theme }) => theme.color.gray};
 `;
 const WrapImage = styled.div`
   margin-right: 10px;

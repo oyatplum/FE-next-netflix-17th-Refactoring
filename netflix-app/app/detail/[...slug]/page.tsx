@@ -6,7 +6,7 @@ import { ShowDetail } from '@/assets/components/Common/ShowDetail';
 import { PlayButton } from '@/assets/components/Detail/PlayButton';
 import { Poster } from '@/assets/components/Detail/Poster';
 import { TvShowDetail } from '@/assets/interface/interface';
-import theme from '@/app/style/theme';
+import theme, { detailCss } from '@/app/style/theme';
 
 async function getMovieDetails(movieId: string) {
   const getMovieDetail = await fetchDetails(movieId);
@@ -37,7 +37,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ params }) => {
 };
 
 const Header = styled.div`
-  ${(props) => props.theme.detailCss};
+  ${detailCss};
 `;
 
 export default DetailPage;

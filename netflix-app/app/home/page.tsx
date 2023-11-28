@@ -17,7 +17,7 @@ async function getMovieData() {
 
   const upComingData = await fetchUpComing();
 
-  const nowPlayingData = await fetchNowPlaying();
+  //const nowPlayingData = await fetchNowPlaying();
 
   const topRatedData = await fetchTopRated();
 
@@ -26,7 +26,7 @@ async function getMovieData() {
   return {
     getBannerData,
     upComingData,
-    nowPlayingData,
+    //nowPlayingData,
     topRatedData,
     popularData,
   };
@@ -35,7 +35,9 @@ async function getMovieData() {
 export default async function main() {
   console.log('home page');
   const movies = await getMovieData();
-  console.log('movies type', movies);
+  //console.log('home page');
+  //console.log(movies.getBannerData);
+  //console.log('movies type', movies);
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -50,7 +52,7 @@ export default async function main() {
               movies={movies.upComingData[0]}
               isRoundRow
             />
-            <Row title="NowPlaying" id="NP" movies={movies.nowPlayingData[0]} />
+            <Row title="NowPlaying" id="NP" movies={movies.getBannerData[0]} />
             <Row title="Top Rated" id="TR" movies={movies.topRatedData[0]} />
             <Row title="Popular" id="Pr" movies={movies.popularData[0]} />
           </Rows>

@@ -3,6 +3,7 @@ import { TvShowTypeArray } from '@/assets/interface/interface';
 import theme from '@/app/style/theme';
 
 export const ShowDetail = (obj: TvShowTypeArray) => {
+  console.log('Showdetail');
   return (
     <>
       <ThemeProvider theme={theme}>

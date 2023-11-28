@@ -2,9 +2,10 @@ import Link from 'next/link';
 import styled, { ThemeProvider } from 'styled-components';
 import playButton from '@/assets/components/images/Button/play.svg';
 import { TvShowTypeArray } from '@/assets/interface/interface';
-import theme from '@/app/style/theme';
+import theme, { flexCenter } from '@/app/style/theme';
 
 export const PlayButton = ({ obj }: TvShowTypeArray) => {
+  console.log('Playbutton');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -38,9 +39,9 @@ const Button = styled.div`
 
 const PlayButtonWrapper = styled.div`
   height: 45px;
-  background: #c4c4c4;
+  background: ${({ theme }) => theme.color.lightGray};
   border-radius: 5.625px;
-  ${(props) => props.theme.flexCenter};
+  ${flexCenter};
   padding-left: 19px;
   margin: 13px 36px 0 36px;
   cursor: pointer;

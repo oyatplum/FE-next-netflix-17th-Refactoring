@@ -5,7 +5,7 @@ import animationData from './NetflixLogo.json';
 import { useEffect } from 'react';
 
 export const NetflixComponent = () => {
-  console.log('netflixComponent');
+  console.log('NetflixComponent');
   const router = useRouter();
   useEffect(() => {
     const goPage = setTimeout(() => {

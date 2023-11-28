@@ -3,7 +3,7 @@ import React from 'react';
 import { fetchUpComing } from '@/assets/api/requests';
 import styled, { ThemeProvider } from 'styled-components';
 import MovieCard from '@/assets/components/Common/MovieCard';
-import theme from '../style/theme';
+import theme, { headerTitle } from '../style/theme';
 
 async function getMovieData() {
   const upComingData = await fetchUpComing();
@@ -14,6 +14,7 @@ async function getMovieData() {
 }
 
 export default async function ComingPage() {
+  console.log('coming page');
   const comingMovie = await getMovieData();
   return (
     <>
@@ -26,5 +27,5 @@ export default async function ComingPage() {
 }
 
 const Title = styled.div`
-  ${(props) => props.theme.headerTitle};
+  ${headerTitle};
 `;

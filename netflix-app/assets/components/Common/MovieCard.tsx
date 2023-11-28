@@ -4,9 +4,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HeaderMovies, MovieDetail } from '@/assets/interface/interface';
-import theme from '@/app/style/theme';
+import theme, { alignCenter } from '@/app/style/theme';
 
 export default function MovieCard({ movies }: HeaderMovies) {
+  console.log('MovieCard');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -39,11 +40,11 @@ const WrapMovie = styled.div`
   width: 375px;
   height: 76px;
   flex-direction: row;
-  ${(props) => props.theme.alignCenter};
-  background: #424242;
+  ${alignCenter};
+  background: ${({ theme }) => theme.color.gray};
 `;
 const MovieTitle = styled.p`
-  color: white;
+  color: ${({ theme }) => theme.color.white};
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -51,6 +52,6 @@ const MovieTitle = styled.p`
 `;
 const Movies = styled.div`
   flex-direction: column;
-  ${(props) => props.theme.alignCenter};
+  ${alignCenter};
   padding-bottom: 60px;
 `;

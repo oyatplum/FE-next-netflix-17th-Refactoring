@@ -2,7 +2,7 @@ import theme from '@/app/style/theme';
 import styled, { ThemeProvider } from 'styled-components';
 
 export const IntroText = () => {
-  console.log('introText');
+  console.log('IntroText');
   return (
     <ThemeProvider theme={theme}>
       <IntroTextWrapper>

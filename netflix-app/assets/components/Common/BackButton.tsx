@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import theme from '@/app/style/theme';
 
 export const BackButton = () => {
+  console.log('Backbutton');
   const router = useRouter();
   const handleOnClick = () => {
     router.push('/home');

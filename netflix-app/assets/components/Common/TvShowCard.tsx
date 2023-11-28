@@ -3,9 +3,10 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Image from 'next/image';
 import { TvShowDetail, TvShowTypeArray } from '@/assets/interface/interface';
-import theme from '@/app/style/theme';
+import theme, { alignCenter } from '@/app/style/theme';
 
 export default function TvShowCard({ arr }: TvShowTypeArray) {
+  console.log('Tvshowcard');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -36,11 +37,11 @@ const WrapMovie = styled.div`
   width: 375px;
   height: 76px;
   flex-direction: row;
-  background: #424242;
-  ${(props) => props.theme.alignCenter};
+  background: ${({ theme }) => theme.color.gray};
+  ${alignCenter};
 `;
 const MovieTitle = styled.p`
-  color: white;
+  color: ${({ theme }) => theme.color.white};
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -49,6 +50,6 @@ const MovieTitle = styled.p`
 `;
 const Movies = styled.div`
   flex-direction: column;
-  ${(props) => props.theme.alignCenter};
+  ${alignCenter};
   padding-bottom: 60px;
 `;

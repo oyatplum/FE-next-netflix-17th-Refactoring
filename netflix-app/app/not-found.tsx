@@ -1,9 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import theme from './style/theme';
+import theme, { detailCss } from './style/theme';
 
 export default function NotFound() {
+  console.log('not-found page');
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const Title = styled.div`
   text-align: center;
 `;
 const Header = styled.div`
-  ${(props) => props.theme.detailCss};
+  ${detailCss};
 `;
 const BackImg = styled.div<{ imageurl: string }>`
   width: 375px;

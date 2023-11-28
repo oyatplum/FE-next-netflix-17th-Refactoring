@@ -1,31 +1,33 @@
-import css from 'styled-jsx/css';
+import { css } from 'styled-components';
 const color = {
   black: '#000000',
   white: '#ffffff',
+  gray: '#424242',
+  lightGray: '#c4c4c4',
 };
 
-const flexCenter = css`
+export const flexCenter = css`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const flexColumn = css`
+export const flexColumn = css`
   display: flex;
   flex-direction: column;
 `;
 
-const alignCenter = css`
+export const alignCenter = css`
   display: flex;
   align-items: center;
 `;
 
-const justifyCenter = css`
+export const justifyCenter = css`
   display: flex;
   justify-content: center;
 `;
 
-const headerTitle = css`
+export const headerTitle = css`
   width: 300px;
   height: 45px;
   font-weight: 700;
@@ -36,7 +38,7 @@ const headerTitle = css`
   margin: 60px 0 20px 0;
 `;
 
-const detailCss = css`
+export const detailCss = css`
   width: 375px;
   height: 415px;
   background: linear-gradient(
@@ -49,12 +51,6 @@ const detailCss = css`
 
 const theme = {
   color,
-  flexCenter,
-  flexColumn,
-  alignCenter,
-  justifyCenter,
-  headerTitle,
-  detailCss,
 };
 
 export default theme;

@@ -3,6 +3,7 @@ import { BackButton } from '@/assets/components/Common/BackButton';
 import { TvShowTypeArray } from '@/assets/interface/interface';
 
 export const Poster = ({ obj }: TvShowTypeArray) => {
+  console.log('Poster');
   return (
     <PosterWrapper>
       {obj ? (

@@ -3,6 +3,7 @@ import { BackButton } from '@/assets/components/Common/BackButton';
 import { FrameType } from '@/assets/interface/interface';
 
 export const Frame = ({ movieKey }: FrameType) => {
+  console.log('Frame');
   return (
     <FrameWrapper>
       <Iframe

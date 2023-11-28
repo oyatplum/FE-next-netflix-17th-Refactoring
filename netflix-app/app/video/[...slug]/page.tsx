@@ -9,7 +9,7 @@ import {
   MovieVideo,
   MovieVideoInfo,
 } from '@/assets/interface/interface';
-import theme from '@/app/style/theme';
+import theme, { detailCss } from '@/app/style/theme';
 
 async function getMovieVideo(movieId: string) {
   const getVideo = await fetchVideos(movieId);
@@ -22,6 +22,7 @@ async function getMovieDetails(movieId: string) {
 }
 
 const DetailPage: React.FC<VideoDetailPageProps> = ({ params }) => {
+  console.log('video page');
   const [movieDetail, setMovieDetail] = useState<MovieVideo | null>(null);
   const [movieInfo, setMovieInfo] = useState<MovieVideoInfo | null>(null);
   const [movieKey, setMovieKey] = useState<string>('');
@@ -59,7 +60,7 @@ const DetailPage: React.FC<VideoDetailPageProps> = ({ params }) => {
 };
 
 const Header = styled.div`
-  ${(props) => props.theme.detailCss};
+  ${detailCss};
   padding-top: 10px;
 `;
 

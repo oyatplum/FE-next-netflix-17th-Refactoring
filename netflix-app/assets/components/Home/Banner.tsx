@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MovieTypeArray } from '@/assets/interface/interface';
 
 export const Banner = ({ obj }: MovieTypeArray) => {
+  console.log('Banner');
   return (
     <Header>
       <BackImg

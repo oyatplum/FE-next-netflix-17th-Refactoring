@@ -1,23 +1,33 @@
 import styled, { ThemeProvider } from 'styled-components';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
-import theme from '@/app/style/theme';
+import theme, { alignCenter } from '@/app/style/theme';
 
 export const Header = () => {
-  console.log('header');
+  console.log('Header');
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 200) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
-    });
+    // window.addEventListener('scroll', () => {
+    //   if (window.scrollY > 200) {
+    //     setShow(true);
+    //   } else {
+    //     setShow(false);
+    //   }
+    // });
+
+    // return () => {
+    //   window.removeEventListener('scroll', () => {});
+    // };
+
+    const handleScroll = () => {
+      setShow(window.scrollY > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', () => {});
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -51,7 +61,7 @@ const HeaderWrapper = styled.div`
   .nav {
     width: 375px;
     padding: 1rem 0 1rem 0;
-    ${(props) => props.theme.alignCenter};
+    ${alignCenter};
     justify-content: space-around;
     position: fixed;
     transition: all 0.5s ease-in;
